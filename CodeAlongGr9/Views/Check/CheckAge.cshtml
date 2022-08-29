@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "CheckAge";
+}
+
+<h1>Check age</h1>
+
+<form asp-action="CheckAge" method="post">
+    <label>Add your age: </label>
+    <input type="number" name="age"/>
+    <input type="submit" value="Check age" />
+</form>
+
+@if(ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
