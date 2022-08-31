@@ -3,6 +3,7 @@ using CodeAlongGr9.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAlongGr9.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220831083201_Added many to many between Car and Person")]
+    partial class AddedmanytomanybetweenCarandPerson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,13 +36,6 @@ namespace CodeAlongGr9.Migrations
                     b.HasIndex("PeopleSSN");
 
                     b.ToTable("CarPerson");
-
-                    b.HasData(
-                        new
-                        {
-                            CarsRegNumber = "ABC-123",
-                            PeopleSSN = "880216"
-                        });
                 });
 
             modelBuilder.Entity("CodeAlongGr9.Models.Car", b =>

@@ -3,6 +3,7 @@ using CodeAlongGr9.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeAlongGr9.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220831082617_Seeded some people and cars")]
+    partial class Seededsomepeopleandcars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,28 +22,6 @@ namespace CodeAlongGr9.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CarPerson", b =>
-                {
-                    b.Property<string>("CarsRegNumber")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PeopleSSN")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CarsRegNumber", "PeopleSSN");
-
-                    b.HasIndex("PeopleSSN");
-
-                    b.ToTable("CarPerson");
-
-                    b.HasData(
-                        new
-                        {
-                            CarsRegNumber = "ABC-123",
-                            PeopleSSN = "880216"
-                        });
-                });
 
             modelBuilder.Entity("CodeAlongGr9.Models.Car", b =>
                 {
@@ -117,21 +97,6 @@ namespace CodeAlongGr9.Migrations
                             City = "Stockholm",
                             Name = "Anna Svensson"
                         });
-                });
-
-            modelBuilder.Entity("CarPerson", b =>
-                {
-                    b.HasOne("CodeAlongGr9.Models.Car", null)
-                        .WithMany()
-                        .HasForeignKey("CarsRegNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CodeAlongGr9.Models.Person", null)
-                        .WithMany()
-                        .HasForeignKey("PeopleSSN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
