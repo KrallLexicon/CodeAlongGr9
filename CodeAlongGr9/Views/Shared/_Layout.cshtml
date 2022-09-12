@@ -41,6 +41,10 @@
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="CarOwner" asp-action="AddOwnerToCar">Add owner to car</a>
                         </li>
+                        
+                         <li class="nav-item">
+                             <partial name="_LoginPartial" />
+                           </li>
                     </ul>
                 </div>
             </div>
@@ -49,6 +53,7 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
+    @await RenderSectionAsync("Scripts", required:false)
 </body>
 <footer class="container">&copy;@DateTime.Now.Year</footer>
 </html>
