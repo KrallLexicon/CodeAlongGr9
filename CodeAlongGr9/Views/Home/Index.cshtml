@@ -5,3 +5,27 @@
 
 <h1>Index</h1>
 
+@if(!User.Identity.IsAuthenticated)
+{
+    <p>Hello! Please login!</p>
+}
+
+@if(User.Identity.IsAuthenticated)
+{
+    if(User.IsInRole("User") && User.IsInRole("Admin"))
+    {
+        <p>Hello User & Admin!</p>
+    }
+    else if(User.IsInRole("Admin"))
+    {
+        <p>Hello Admin!</p>
+    }
+    else if(User.IsInRole("User"))
+    {
+        <p>Hello User!</p>
+    }
+    else
+    {        
+    <p>Hello logged in visitor!</p>
+    }
+}
